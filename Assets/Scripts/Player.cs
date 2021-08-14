@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //Move
     private float horizontal_direction;
     public int MoveSpeed = 3;
     private float JumpCD = 0.5f;
+
+    //Attack
+    public bool isAttacking;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask EnemyLayer;
+
+    //Animation
     private Animator animator;
+    public GameObject PlayerSword;
+
 
     void Start()
     {
@@ -21,16 +32,18 @@ public class Player : MonoBehaviour
             Jump();
         }
         JumpCD += Time.deltaTime;
-        print(JumpCD);
 
         Sprint();
+        AttackMelee1();
         
     }
 
     private void FixedUpdate() {
         Move();
+        //AttackMelee1();
         //Sprint();
     }
+
     private void Move(){
         horizontal_direction = Input.GetAxisRaw("Horizontal");
         if(horizontal_direction > 0){
@@ -77,6 +90,29 @@ public class Player : MonoBehaviour
             //animation["Run"].speed = 1;
         }
 
+    }
+
+    private void AttackMelee1(){
+        if(Input.GetKeyDown(KeyCode.J)){
+            animator.SetTrigger("AttackMelee1");
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayer);
+
+            foreach (Collider2D enemy in hitEnemies){
+                print("we hit");
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected() {
+        if(attackPoint == null){
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void ChangeSword(){
+        Instantiate(PlayerSword, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
 }
