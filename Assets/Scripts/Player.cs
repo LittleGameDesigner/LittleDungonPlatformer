@@ -8,21 +8,29 @@ public class Player : MonoBehaviour
     private float horizontal_direction;
     public int MoveSpeed = 3;
     private float JumpCD = 0.5f;
-
     //Attack
     public bool isAttacking;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask EnemyLayer;
-
-    //Animation
+    public float AttackCD = 1;
+    //Material
     private Animator animator;
     public GameObject PlayerSword;
+    //Health
+    public float Health;
+    public float maxHealth = 100;
+    public HealthBarBehaviour healthBar;
+
 
 
     void Start()
     {
+        //gameObject.SetActive(true);
         animator = GetComponent<Animator>();
+        Health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        //healthBar.Active(false);
     }
 
     // Update is called once per frame
@@ -34,8 +42,11 @@ public class Player : MonoBehaviour
         JumpCD += Time.deltaTime;
 
         Sprint();
-        AttackMelee1();
-        
+        if(AttackCD > 2){
+            AttackMelee1();
+            AttackCD = 0;
+        }
+        AttackCD += Time.deltaTime;    
     }
 
     private void FixedUpdate() {
@@ -111,8 +122,11 @@ public class Player : MonoBehaviour
     }
 
     private void ChangeSword(){
-        Instantiate(PlayerSword, transform.position, transform.rotation);
-        Destroy(gameObject);
+        //Instantiate(PlayerSword, transform.position, transform.rotation);
+        PlayerSword.SetActive(true);
+        gameObject.SetActive(false);
+        
+        //Destroy(gameObject);
     }
 
 }

@@ -9,20 +9,27 @@ public class PlayerSword : MonoBehaviour
     public int MoveSpeed = 3;
     private float JumpCD = 0.5f;
     private bool isSprinting;
-
     //Attack
     public bool isAttacking;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask EnemyLayer;
-
-    //Animation
+    public float AttackCD = 0.5f;
+    public float AttackDemage = 10;
+    //Material
     private Animator animator;
+    public GameObject PlayerBow;
+    //Health
+    public float Health;
+    public float maxHealth = 100;
+    public HealthBarBehaviour healthBar;
 
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        Health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -34,7 +41,14 @@ public class PlayerSword : MonoBehaviour
         JumpCD += Time.deltaTime;
 
         Sprint();
-        AttackMelee1();
+        if(AttackCD > 0.5f){
+            if(Input.GetKeyDown(KeyCode.J) && !isSprinting){
+                animator.SetTrigger("AttackMelee1");
+                Invoke("AttackMelee1", 0.3f);
+            }
+        }
+        AttackCD += Time.deltaTime; 
+        SwitchToBow();
         
     }
 
@@ -95,13 +109,18 @@ public class PlayerSword : MonoBehaviour
     }
 
     private void AttackMelee1(){
-        if(Input.GetKeyDown(KeyCode.J) && !isSprinting){
-            animator.SetTrigger("AttackMelee1");
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayer);
+        foreach (Collider2D enemy in hitEnemies){
+            enemy.SendMessage("TakeDemage", AttackDemage, SendMessageOptions.DontRequireReceiver);
+        }
+        AttackCD = 0;
+    }
 
-            foreach (Collider2D enemy in hitEnemies){
-                print("we hit");
-            }
+    private void TakeDemage(float demage){
+        Health -= demage;
+        healthBar.SetHealth(Health);
+        if(Health <= 0){
+            Destroy(gameObject);
         }
     }
 
@@ -110,6 +129,13 @@ public class PlayerSword : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void SwitchToBow(){
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            PlayerBow.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
 
 }
