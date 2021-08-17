@@ -112,6 +112,7 @@ public class PlayerSword : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayer);
         foreach (Collider2D enemy in hitEnemies){
             enemy.SendMessage("TakeDemage", AttackDemage, SendMessageOptions.DontRequireReceiver);
+            FindObjectOfType<AudioManager>().Play("SwordSwing");
         }
         AttackCD = 0;
     }
@@ -120,7 +121,8 @@ public class PlayerSword : MonoBehaviour
         Health -= demage;
         healthBar.SetHealth(Health);
         if(Health <= 0){
-            Destroy(gameObject);
+            animator.SetBool("Die", true);
+            Destroy(gameObject, 1);
         }
     }
 

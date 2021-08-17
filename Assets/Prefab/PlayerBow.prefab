@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8308108746938906101
 Transform:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020534515, y: 0.12320709}
+  m_Offset: {x: 0.21046066, y: 0.12320709}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -131,7 +131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3639641, y: 1.603586}
+  m_Size: {x: 1.3639603, y: 1.603586}
   m_EdgeRadius: 0
 --- !u!95 &8308108746938906100
 Animator:
@@ -168,7 +168,10 @@ MonoBehaviour:
   isAttacking: 0
   AttackCD: 0.8
   AttackDemage: 10
-  arrow: {fileID: 0}
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  arrow: {fileID: 2330331943041682703, guid: 3fca81d98ebe9b24085c8b9422988c33, type: 3}
   arrowEulerAngles: {x: 0, y: 0, z: 0}
   Health: 0
   maxHealth: 100

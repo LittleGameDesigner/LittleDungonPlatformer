@@ -78,6 +78,7 @@ public class EnemySword : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayer);
         foreach (Collider2D enemy in hitEnemies){
             enemy.SendMessage("TakeDemage", AttackDemage, SendMessageOptions.DontRequireReceiver);
+            FindObjectOfType<AudioManager>().Play("AttackMelee");
         }
         timeSinceLastAttack = Time.time;
     }
@@ -113,7 +114,8 @@ public class EnemySword : MonoBehaviour
         healthBar.Active(true);
         healthBar.SetHealth(Health);
         if(Health <= 0){
-            Destroy(gameObject);
+            animator.SetTrigger("Die");
+            Destroy(gameObject, 0.5f);
         }
     }
 }

@@ -13,7 +13,7 @@ public class PlayerBow : MonoBehaviour
     public float AttackCD = 0.8f;
     public float AttackDemage = 10;
     public LayerMask EnemyLayer;
-    public GameObject arrow;
+    public GameObject PlayerArrow;
     public Vector3 arrowEulerAngles;
     //Material
     private Animator animator;
@@ -104,13 +104,14 @@ public class PlayerBow : MonoBehaviour
     private void Attack(){
         if(Input.GetKeyDown(KeyCode.J) && !isSprinting){
             animator.SetTrigger("Attack");
-            Invoke("Shoot", 0.3f);
+            Invoke("Shoot", 0.8f);
             AttackCD = 0;
         }
     }
 
     private void Shoot(){
-        Instantiate(arrow, transform.position, Quaternion.Euler(transform.eulerAngles + arrowEulerAngles));
+        Instantiate(PlayerArrow, transform.position, Quaternion.Euler(transform.eulerAngles + arrowEulerAngles));
+        FindObjectOfType<AudioManager>().Play("ArrowFly");
     }
 
     private void TakeDemage(float demage){
