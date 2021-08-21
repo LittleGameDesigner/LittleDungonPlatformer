@@ -6,6 +6,9 @@ TagManager:
   tags:
   - TutorialRequirement
   - Enemy
+  - Terrian
+  - FxTemporaire
+  - Arrow
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - AttackPoint
   - 
   - 
   - 

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8308108746938906099}
   - component: {fileID: 8308108746938906100}
   - component: {fileID: 8308108746938906096}
-  m_Layer: 0
+  - component: {fileID: 1580744208}
+  m_Layer: 6
   m_Name: PlayerBow
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 0420841c5d0722c45be1fe921a9ab04f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,7 +98,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
@@ -164,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808a3bbbb0de1eb4ca3fb2c26d41d181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontal_direction: 0
   MoveSpeed: 3
   isAttacking: 0
   AttackCD: 0.8
@@ -171,8 +173,23 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  arrow: {fileID: 2330331943041682703, guid: 3fca81d98ebe9b24085c8b9422988c33, type: 3}
+  PlayerArrow: {fileID: 2330331943041682703, guid: 3fca81d98ebe9b24085c8b9422988c33,
+    type: 3}
   arrowEulerAngles: {x: 0, y: 0, z: 0}
+  PlayerSword: {fileID: 0}
   Health: 0
-  maxHealth: 100
+  maxHealth: 300
   healthBar: {fileID: 0}
+  level: 1
+  exp: 0
+  expGap: 100
+  LevelUp: {fileID: 0}
+  LevelUpIcon: {fileID: 0}
+--- !u!81 &1580744208
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308108746938906102}
+  m_Enabled: 1

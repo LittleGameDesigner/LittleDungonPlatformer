@@ -122,3 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8ed77111aa89a4789c83eba99d9472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  demage: 5
+  PlayerBow: {fileID: 8308108746938906102, guid: 94c76668743e40c4ebea70ddb66602e7,
+    type: 3}

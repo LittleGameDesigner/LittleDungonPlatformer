@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5549448874004756970}
   - component: {fileID: 5562162629408268486}
   - component: {fileID: 5608565208538915310}
+  - component: {fileID: 1468391203}
   m_Layer: 6
   m_Name: PlayerSword
   m_TagString: Player
@@ -165,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526e764f34ed7e6409736a31f0d03c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontal_direction: 0
   MoveSpeed: 3
   isAttacking: 0
   attackPoint: {fileID: 7247104019622634264}
@@ -173,11 +175,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   AttackCD: 2
-  AttackDemage: 10
   PlayerBow: {fileID: 0}
   Health: 0
-  maxHealth: 100
+  maxHealth: 300
   healthBar: {fileID: 0}
+  level: 1
+  exp: 0
+  expGap: 100
+  LevelUp: {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
+  LevelUpIcon: {fileID: 3151521510289993982, guid: 0c960c7a43e81c145b636b860e5edf50,
+    type: 3}
+--- !u!81 &1468391203
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881475440403529681}
+  m_Enabled: 1
 --- !u!1 &3549954160007130494
 GameObject:
   m_ObjectHideFlags: 0

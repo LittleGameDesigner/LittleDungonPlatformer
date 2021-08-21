@@ -36,18 +36,43 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\EnemySword.cs" />
-     <Compile Include="Assets\Scripts\CameraPlayer.cs" />
-     <Compile Include="Assets\Scripts\PlayerBow.cs" />
-     <Compile Include="Assets\Scripts\PlayerSword.cs" />
-     <Compile Include="Assets\Scripts\PlayerManager.cs" />
-     <Compile Include="Assets\Scripts\FirstSword.cs" />
-     <Compile Include="Assets\Scripts\HealthBarBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\SkeletonBoss.cs" />
-     <Compile Include="Assets\Scripts\PlayerArrow.cs" />
-     <Compile Include="Assets\Scripts\AudioManager.cs" />
-     <Compile Include="Assets\Scripts\Sound.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonSword.cs" />
+     <Compile Include="Assets\Scripts\Other\Potion.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonMage.cs" />
+     <Compile Include="Assets\Scripts\Other\CameraPlayer.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonSpear.cs" />
+     <Compile Include="Assets\Scripts\Other\Key.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Spider.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonArcher.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerBow.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSword.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\Other\Traps.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
+     <Compile Include="Assets\Scripts\Other\FirstSword.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
+     <Compile Include="Assets\Scripts\Other\HealthBarBehaviour.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
+     <Compile Include="Assets\Scripts\Player\Player.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_Translate.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerArrow.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonBoss.cs" />
+     <Compile Include="Assets\Scripts\Other\AudioManager.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_New.cs" />
+     <Compile Include="Assets\Scripts\Other\DieFinishEvent.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
+     <Compile Include="Assets\Scripts\Other\Door.cs" />
+     <Compile Include="Assets\Scripts\Enemies\EnemyArrow.cs" />
+     <Compile Include="Assets\Scripts\Other\Sound.cs" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Free.txt" />
+     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+     <None Include="Assets\ZombieHorrorPackageFree\Note.txt" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Unity/2020.3.15f2/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
