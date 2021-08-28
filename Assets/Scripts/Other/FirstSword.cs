@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FirstSword : MonoBehaviour
 {
+    public GameObject Hint;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class FirstSword : MonoBehaviour
         if(collision.tag == "Player"){
             collision.SendMessage("ChangeSword");
             FindObjectOfType<AudioManager>().Play("DrawSword");
+            Destroy(Hint);
             Destroy(gameObject);
         }
     }

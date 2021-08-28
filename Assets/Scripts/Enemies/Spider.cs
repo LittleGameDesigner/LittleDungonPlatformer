@@ -45,7 +45,7 @@ public class Spider : MonoBehaviour
     private void FixedUpdate() {
         if(dead == true){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        if(Math.Abs(Player.transform.position.x - transform.position.x) < 1.6){
+        if((XRange(Player) < 1.6f) && (YRange(Player) < 1.6f)){
             transform.Translate(Vector3.right * 0, Space.World);
             animator.SetBool("isRunning", false);
 
@@ -95,7 +95,7 @@ public class Spider : MonoBehaviour
     private void Chase(){
         if(timeSinceLastAttack + 1 > Time.time){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        if(Math.Abs(Player.transform.position.x - transform.position.x) < 8){
+        if((XRange(Player) < 10) && (YRange(Player) < 3)){
             animator.SetBool("isRunning", true);
             MoveSpeed = 12;
             Vector3 facingDirection = transform.localScale;
@@ -116,6 +116,14 @@ public class Spider : MonoBehaviour
             //MoveSpeed = 2;
             //Move();
         }
+    }
+
+    private float XRange(GameObject player){
+        return Math.Abs(Player.transform.position.x - transform.position.x);
+    }
+
+    private float YRange(GameObject player){
+        return Math.Abs(Player.transform.position.y - transform.position.y);
     }
 
     private void TakeDemage(float demage){

@@ -13,6 +13,7 @@ public class SkeletonSword : MonoBehaviour
     //Attack
     public Transform attackPoint;
     public LayerMask EnemyLayer;
+    private bool isAttacking;
     public float attackRange = 1;
     public float AttackCD = 0.5f;
     public float AttackDemage = 10;
@@ -42,18 +43,19 @@ public class SkeletonSword : MonoBehaviour
     private void FixedUpdate() {
         if(dead){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        ChangeDirection();
+        if(!isAttacking)ChangeDirection();
         if((XRange(Player) < 2) && (YRange(Player) < 2)){
             transform.Translate(Vector3.right * 0, Space.World);
             
             if(AttackCD > 2){
+                isAttacking = true;
                 animator.SetBool("isRunning", false);
                 animator.SetTrigger("Attack");
                 AttackCD = 0;
                 Invoke("Attack", 0.48f);
             }        
         }else{
-            Chase();
+            if(!isAttacking)Chase();
         }
         if(TurnOverTime > 3){
             direction *= -1;
@@ -104,6 +106,7 @@ public class SkeletonSword : MonoBehaviour
         }
         timeSinceLastAttack = Time.time;
         animator.SetTrigger("StopAttack");
+        isAttacking = false;
     }
 
     private float XRange(GameObject player){
@@ -117,7 +120,7 @@ public class SkeletonSword : MonoBehaviour
     private void Chase(){
         if(timeSinceLastAttack + 1 > Time.time){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        if((XRange(Player) < 8) && (YRange(Player) < 3)){
+        if((XRange(Player) < 10) && (YRange(Player) < 4)){
             animator.SetBool("isRunning", true);
             MoveSpeed = 5;
             Vector3 facingDirection = transform.localScale;

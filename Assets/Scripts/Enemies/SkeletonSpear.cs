@@ -13,6 +13,7 @@ public class SkeletonSpear : MonoBehaviour
     //Attack
     public Transform attackPoint;
     public LayerMask EnemyLayer;
+    private bool isAttacking;
     public float attackRange = 3;
     public float AttackCD = 0.5f;
     public float AttackDemage = 15;
@@ -46,18 +47,19 @@ public class SkeletonSpear : MonoBehaviour
     private void FixedUpdate() {
         if(dead){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        ChangeDirection();
+        if(!isAttacking)ChangeDirection();
         if((XRange(Player) < 3.5) && (YRange(Player) < 2)){
             transform.Translate(Vector3.right * 0, Space.World);
             
             if(AttackCD > 3){
+                isAttacking = true;
                 animator.SetBool("isRunning", false);
                 animator.SetTrigger("Attack");
                 AttackCD = 0;
                 Invoke("Attack", 0.6f);
             }        
         }else{
-            Chase();
+            if(!isAttacking)Chase();
         }
         if(TurnOverTime > 3){
             direction *= -1;
@@ -107,6 +109,8 @@ public class SkeletonSpear : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("AttackMelee");
         }
         timeSinceLastAttack = Time.time;
+        animator.SetTrigger("StopAttack");
+        isAttacking = false;
     }
 
     private float XRange(GameObject player){
@@ -120,7 +124,7 @@ public class SkeletonSpear : MonoBehaviour
     private void Chase(){
         if(timeSinceLastAttack + 1 > Time.time){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        if((XRange(Player) < 8) && (YRange(Player) < 2)){
+        if((XRange(Player) < 12) && (YRange(Player) < 4)){
             animator.SetBool("isRunning", true);
             MoveSpeed = 4;
             Vector3 facingDirection = transform.localScale;

@@ -41,10 +41,11 @@ public class SkeletonArcher : MonoBehaviour
         if(dead){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
         if((XRange(Player) < 20) && (YRange(Player) < 5)){
-            ChangeDirection();
+            if(!isAttacking)ChangeDirection();
             transform.Translate(Vector3.right * 0, Space.World);
             
             if(attackCD >= 3){
+                isAttacking = true;
                 animator.SetBool("isRunning", false);
                 animator.SetTrigger("Attack");
                 attackCD = 0;
@@ -89,6 +90,7 @@ public class SkeletonArcher : MonoBehaviour
         Instantiate(EnemyArrow, transform.position, Quaternion.Euler(transform.eulerAngles + EnemyArrowEulerAngles));
         FindObjectOfType<AudioManager>().Play("ArrowFly");
         animator.SetTrigger("StopAttack");
+        isAttacking = false;
     }
 
     private void TakeDemage(float demage){

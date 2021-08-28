@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -15,18 +16,22 @@ public class Player : MonoBehaviour
     public LayerMask EnemyLayer;
     public float AttackCD = 1;
     //Material
+    [SerializeField] private LayerMask TerrianLayer; 
     private Animator animator;
     public GameObject PlayerSword;
     public GameObject PlayerBow;
     private Color originalColor;
+    private BoxCollider2D boxCollider2D;
     //Health
     public float Health;
     private float maxHealth = 1;
     public HealthBarBehaviour healthBar;
+    private bool dead;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        boxCollider2D = transform.GetComponent<BoxCollider2D>();
         Health = maxHealth;
         healthBar.SetMaxHealth(Health, maxHealth);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
@@ -36,15 +41,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(dead)return;
         if(JumpCD >= 0.5){
             Jump();
         }
         JumpCD += Time.deltaTime;
-        Sprint();  
-        SwitchToSword(); 
+        Sprint();
     }
 
     private void FixedUpdate() {
+        if(dead)return;
         Move();
     }
 
@@ -76,11 +82,16 @@ public class Player : MonoBehaviour
     }
 
     private void Jump(){
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded()){
             animator.SetTrigger("Jump");
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 33), ForceMode2D.Impulse);
             JumpCD = 0;
         }
+    }
+
+    private bool IsGrounded(){
+        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + 0.01f, TerrianLayer);
+        return (raycastHit != null);
     }
 
     private void Sprint(){
@@ -98,26 +109,31 @@ public class Player : MonoBehaviour
         PlayerSword.SetActive(true);
         PlayerSword ps = PlayerSword.GetComponent<PlayerSword>();
         ps.Health = ps.maxHealth;
+        PlayerBow pb = PlayerBow.GetComponent<PlayerBow>();
+        pb.canSwitchToSword = true;
         gameObject.SetActive(false);
     }
 
-    private void SwitchToSword(){
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
-            PlayerSword.SetActive(true);
-            PlayerSword ps = PlayerSword.GetComponent<PlayerSword>();
-            ps.Health = ps.maxHealth;
-            gameObject.SetActive(false);
-        }
+    private void ChangeBow(){
+        PlayerBow.SetActive(true);
+        PlayerBow pb = PlayerBow.GetComponent<PlayerBow>();
+        pb.Health = pb.maxHealth;
+        PlayerSword ps = PlayerSword.GetComponent<PlayerSword>();
+        ps.canSwitchToBow = true;
+        gameObject.SetActive(false);
     }
 
     private void TakeDemage(float demage){
+        if(dead)return;
         Health -= demage;
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         PlayerRenderrer.material.SetColor("_Color", Color.red);
         Invoke("DemageEffect", 0.2f);
         healthBar.SetHealth(Health);
         if(Health <= 0){
-            Destroy(gameObject);
+            dead = true;
+            animator.SetBool("Die", true);
+            Invoke("Respawn", 1);
         }
     }
 
@@ -126,10 +142,12 @@ public class Player : MonoBehaviour
         PlayerRenderrer.material.SetColor("_Color", originalColor);
     }
     
-    private void DrinkRedPotion(){
-        Health += 100;
-        healthBar.SetHealth(Health);
-    }
+    private void DrinkRedPotion(){return;}
 
+    private void DrinkYellowPotion(){return;}
+
+    private void Respawn(){
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+    }
     
 }

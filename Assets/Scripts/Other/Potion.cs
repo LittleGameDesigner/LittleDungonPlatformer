@@ -7,6 +7,7 @@ public class Potion : MonoBehaviour
     //Materials
     public int whichPotion;
     private GameObject Player;
+    public GameObject SpecialEffect;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class Potion : MonoBehaviour
                 case 0:
                     collision.SendMessage("DrinkRedPotion");
                     FindObjectOfType<AudioManager>().Play("DrinkPotion");
+                    Destroy(SpecialEffect);
                     Destroy(gameObject);
                     break;
                 case 1:

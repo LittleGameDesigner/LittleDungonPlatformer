@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 862387772}
   - component: {fileID: 862387773}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 'AttackPoint '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,6 +256,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   AttackCD: 0.5
+  TerrianLayer:
+    serializedVersion: 2
+    m_Bits: 0
   PlayerSword: {fileID: 0}
   PlayerBow: {fileID: 0}
   Health: 0

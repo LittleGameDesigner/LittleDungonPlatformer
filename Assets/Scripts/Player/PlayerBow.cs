@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class PlayerBow : MonoBehaviour
@@ -18,14 +19,18 @@ public class PlayerBow : MonoBehaviour
     public LayerMask EnemyLayer;
     public GameObject PlayerArrow;
     public Vector3 arrowEulerAngles;
+    public bool canSwitchToSword;
     //Material
+    [SerializeField] private LayerMask TerrianLayer;
     private Animator animator;
     private Color originalColor;
     public GameObject PlayerSword;
+    private BoxCollider2D boxCollider2D;
     //Health
     public float Health;
     public float maxHealth = 100;
     public HealthBarBehaviour healthBar;
+    private bool dead;
     //EXP
     public int level = 1;
     public float exp = 0;
@@ -36,6 +41,7 @@ public class PlayerBow : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        boxCollider2D = transform.GetComponent<BoxCollider2D>();
         Health = maxHealth;
         healthBar.SetMaxHealth(Health, maxHealth);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
@@ -44,6 +50,7 @@ public class PlayerBow : MonoBehaviour
 
     void Update()
     {
+        if(dead)return;
         if(JumpCD >= 0.5){
             Jump();
         }
@@ -60,6 +67,7 @@ public class PlayerBow : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if(dead)return;
         Move();
     }
 
@@ -133,7 +141,7 @@ public class PlayerBow : MonoBehaviour
     }
 
     private void SwitchToSword(){
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
+        if(Input.GetKeyDown(KeyCode.Alpha1) && canSwitchToSword){
             PlayerSword.SetActive(true);
             PlayerSword ps = PlayerSword.GetComponent<PlayerSword>();
             ps.Health = Health;
@@ -145,14 +153,30 @@ public class PlayerBow : MonoBehaviour
         }
     }
 
+    private void ChangeSword(){
+        PlayerSword.SetActive(true);
+        PlayerSword ps = PlayerSword.GetComponent<PlayerSword>();
+        ps.Health = Health;
+        canSwitchToSword = true;
+        ps.canSwitchToBow = true;
+        gameObject.SetActive(false);
+    }
+
+    private void ChangeBow(){
+        return;
+    }
+
     private void TakeDemage(float demage){
+        if(dead)return;
         Health -= demage;
         healthBar.SetHealth(Health);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         PlayerRenderrer.material.SetColor("_Color", Color.red);
         Invoke("DemageEffect", 0.2f);
         if(Health <= 0){
-            Destroy(gameObject);
+            animator.SetTrigger("Die");
+            dead = true;
+            Invoke("Respawn", 1);
         }
     }
 
@@ -186,5 +210,9 @@ public class PlayerBow : MonoBehaviour
 
     private void DrinkYellowPotion(){
         GainEXP(100);
+    }
+
+    private void Respawn(){
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 }

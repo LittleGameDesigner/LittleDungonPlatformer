@@ -175,9 +175,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   AttackCD: 2
+  canSwitchToBow: 0
   PlayerBow: {fileID: 0}
   Health: 0
-  maxHealth: 300
+  maxHealth: 100
   healthBar: {fileID: 0}
   level: 1
   exp: 0
@@ -203,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247104019622634264}
   - component: {fileID: 3296859352172026374}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

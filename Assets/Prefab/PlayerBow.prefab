@@ -168,7 +168,7 @@ MonoBehaviour:
   horizontal_direction: 0
   MoveSpeed: 3
   isAttacking: 0
-  AttackCD: 0.8
+  AttackCoolDown: 1.2
   AttackDemage: 10
   EnemyLayer:
     serializedVersion: 2
@@ -176,15 +176,17 @@ MonoBehaviour:
   PlayerArrow: {fileID: 2330331943041682703, guid: 3fca81d98ebe9b24085c8b9422988c33,
     type: 3}
   arrowEulerAngles: {x: 0, y: 0, z: 0}
+  canSwitchToSword: 0
   PlayerSword: {fileID: 0}
   Health: 0
-  maxHealth: 300
+  maxHealth: 100
   healthBar: {fileID: 0}
   level: 1
   exp: 0
   expGap: 100
-  LevelUp: {fileID: 0}
-  LevelUpIcon: {fileID: 0}
+  LevelUp: {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
+  LevelUpIcon: {fileID: 3151521510289993982, guid: 0c960c7a43e81c145b636b860e5edf50,
+    type: 3}
 --- !u!81 &1580744208
 AudioListener:
   m_ObjectHideFlags: 0

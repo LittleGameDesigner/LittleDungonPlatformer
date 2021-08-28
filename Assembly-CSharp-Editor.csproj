@@ -277,14 +277,14 @@
     <Reference Include="log4netPlastic">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
     </Reference>
+    <Reference Include="JMOAssets_CartoonFXFreeWelcome">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
-    </Reference>
-    <Reference Include="JMOAssets_CartoonFXFreeWelcome">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/Magical Spell Package/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
