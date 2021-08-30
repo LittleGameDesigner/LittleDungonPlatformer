@@ -58,7 +58,7 @@ public class SkeletonMage : MonoBehaviour
 
     private void Attack(){
         FindObjectOfType<AudioManager>().Play("SwordSwing");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 100, EnemyLayer);
         foreach (Collider2D enemy in hitEnemies){
             enemy.SendMessage("TakeDemage", AttackDemage, SendMessageOptions.DontRequireReceiver);
             FindObjectOfType<AudioManager>().Play("Electric");

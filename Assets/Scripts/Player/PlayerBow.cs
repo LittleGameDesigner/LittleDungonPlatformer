@@ -11,7 +11,6 @@ public class PlayerBow : MonoBehaviour
     private float JumpCD = 0.5f;
     private bool isSprinting;
     //Attack
-    public bool isAttacking;
     private float AttackCD = 1.2f;
     public float AttackCoolDown = 1.2f;
     private float baseAttackDemage = 10;
@@ -20,6 +19,7 @@ public class PlayerBow : MonoBehaviour
     public GameObject PlayerArrow;
     public Vector3 arrowEulerAngles;
     public bool canSwitchToSword;
+    private bool isAttacking;
     //Material
     [SerializeField] private LayerMask TerrianLayer;
     private Animator animator;
@@ -50,7 +50,7 @@ public class PlayerBow : MonoBehaviour
 
     void Update()
     {
-        if(dead)return;
+        if(dead || isAttacking)return;
         if(JumpCD >= 0.5){
             Jump();
         }
@@ -67,7 +67,7 @@ public class PlayerBow : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if(dead)return;
+        if(dead || isAttacking)return;  
         Move();
     }
 
@@ -122,6 +122,7 @@ public class PlayerBow : MonoBehaviour
 
     private void Attack(){
         if(Input.GetKeyDown(KeyCode.J) && !isSprinting){
+            isAttacking = true;
             animator.SetTrigger("Attack");
             Invoke("Shoot", 1);
             AttackCD = 0;
@@ -132,6 +133,7 @@ public class PlayerBow : MonoBehaviour
         Instantiate(PlayerArrow, transform.position, Quaternion.Euler(transform.eulerAngles + arrowEulerAngles));
         FindObjectOfType<AudioManager>().Play("ArrowFly");
         animator.SetTrigger("StopAttack");
+        isAttacking = false;
     }
 
     private void UpdateAttackDemage(){

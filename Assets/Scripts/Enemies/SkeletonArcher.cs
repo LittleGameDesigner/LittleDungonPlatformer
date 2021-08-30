@@ -103,7 +103,7 @@ public class SkeletonArcher : MonoBehaviour
         if(Health <= 0){
             dead = true;
             animator.SetTrigger("Die");
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 20, EnemyLayer);
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 100, EnemyLayer);
             foreach (Collider2D enemy in hitEnemies){
                 enemy.SendMessage("GainEXP", exp, SendMessageOptions.DontRequireReceiver);
             }

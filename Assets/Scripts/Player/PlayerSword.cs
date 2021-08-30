@@ -12,14 +12,14 @@ public class PlayerSword : MonoBehaviour
     private float JumpCD = 0.5f;
     private bool isSprinting;
     //Attack
-    public bool isAttacking;
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    public float attackRange = 0.8f;
     public LayerMask EnemyLayer;
     public float AttackCD = 0.5f;
     private float baseAttackDemage = 10;
     private float AttackDemage;
     public bool canSwitchToBow;
+    private bool isAttacking;
     //Material
     [SerializeField] private LayerMask TerrianLayer;
     private Animator animator;
@@ -51,7 +51,7 @@ public class PlayerSword : MonoBehaviour
 
     void Update()
     {   
-        if(dead)return;
+        if(dead || isAttacking)return;
         if(JumpCD >= 0.5){
             Jump();
         }
@@ -60,6 +60,7 @@ public class PlayerSword : MonoBehaviour
         Sprint();
         if(AttackCD > 0.8f){
             if(Input.GetKeyDown(KeyCode.J) && !isSprinting){
+                isAttacking = true;
                 animator.SetTrigger("AttackMelee1");
                 AttackCD = 0;
                 Invoke("AttackMelee1", 0.3f);
@@ -71,7 +72,7 @@ public class PlayerSword : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if(dead)return;
+        if(dead || isAttacking)return;
         Move();
     }
 
@@ -84,7 +85,6 @@ public class PlayerSword : MonoBehaviour
             }
             transform.localScale = facingDirection;
             transform.Translate(Vector3.right * MoveSpeed * horizontal_direction * Time.fixedDeltaTime, Space.World);
-            //
         }
         
         else if(horizontal_direction < 0){
@@ -134,6 +134,7 @@ public class PlayerSword : MonoBehaviour
             enemy.SendMessage("TakeDemage", AttackDemage, SendMessageOptions.DontRequireReceiver);
             FindObjectOfType<AudioManager>().Play("SwordSwing");
         }
+        isAttacking = false;
     }
 
     private void OnDrawGizmosSelected() {
@@ -178,8 +179,8 @@ public class PlayerSword : MonoBehaviour
         healthBar.SetHealth(Health);
         if(Health <= 0){
             dead = true;
-            animator.SetBool("Die", true);
-            Invoke("Respawn", 1);
+            animator.SetTrigger("Die");
+            //Invoke("Respawn", 1);
         }
     }
 

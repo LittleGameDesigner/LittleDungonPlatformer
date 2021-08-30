@@ -29,7 +29,7 @@ public class SkeletonBoss : MonoBehaviour
     public float exp;
     //Health
     public float Health;
-    public float maxHealth = 350;
+    public float maxHealth = 280;
     private float stunCount = 0;
     private bool Stuned;
     private Color originalColor;
@@ -190,7 +190,7 @@ public class SkeletonBoss : MonoBehaviour
         if(Health <= 0){
             animator.speed = 1;
             animator.SetTrigger("Die");
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, EnemyLayer);
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 100, EnemyLayer);
             foreach (Collider2D enemy in hitEnemies){
                 enemy.SendMessage("GainEXP", exp, SendMessageOptions.DontRequireReceiver);
             }

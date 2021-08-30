@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public int MoveSpeed = 3;
     private float JumpCD = 0.5f;
     //Attack
-    public bool isAttacking;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask EnemyLayer;
@@ -63,7 +62,6 @@ public class Player : MonoBehaviour
             }
             transform.localScale = facingDirection;
             transform.Translate(Vector3.right * MoveSpeed * horizontal_direction * Time.fixedDeltaTime, Space.World);
-            //
         }
         
         else if(horizontal_direction < 0){
