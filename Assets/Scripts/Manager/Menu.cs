@@ -62,6 +62,10 @@ public class Menu : MonoBehaviour
         FindObjectOfType<AudioManager>().SetVolume("DrinkPotion", volume);
         FindObjectOfType<AudioManager>().SetVolume("LevelUp", volume);
         FindObjectOfType<AudioManager>().SetVolume("DrawBow", volume);
+        FindObjectOfType<AudioManager>().SetVolume("FireBallExplosion", volume);
+        FindObjectOfType<AudioManager>().SetVolume("CastFireBall", volume);
+        FindObjectOfType<AudioManager>().SetVolume("Block", volume);
+        FindObjectOfType<AudioManager>().SetVolume("BerserkerRage", volume);
     }
 
     public void QuitGame(){

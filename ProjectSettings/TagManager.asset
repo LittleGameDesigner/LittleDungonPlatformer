@@ -19,7 +19,7 @@ TagManager:
   - Player
   - AttackPoint
   - Terrian
-  - 
+  - FlyingEnemy
   - 
   - 
   - 
@@ -60,4 +60,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tilemap
+    uniqueID: 82971437
+    locked: 0
+  - name: MagicObjects
+    uniqueID: 2724141719
     locked: 0

@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject Player;
     public GameObject PlayerSword;
     public GameObject PlayerBow;
-    public GameObject Menu;
+    public GameObject PlayerStat;
 
     void Start()
     {
@@ -29,7 +29,11 @@ public class PlayerManager : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Escape)){
-            Menu.SetActive(true);
+            if(PlayerStat.activeSelf){
+                PlayerStat.SetActive(false);
+            }else{
+                PlayerStat.SetActive(true);
+            }
         }
     }
 

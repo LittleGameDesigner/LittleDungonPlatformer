@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     public Text nameText;
     public Text dialogueText;
+    public string lastSentence;
     public Animator animator;
 
     void Start()
@@ -25,19 +26,21 @@ public class DialogueManager : MonoBehaviour
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
+            lastSentence = sentence;
         }
 
         DisplayNextSentence();
     }
 
-    public void DisplayNextSentence(){
+    public int DisplayNextSentence(){
         if(sentences.Count == 0){
             EndDialogue();
-            return;
+            return 1;
         }
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
+        return 0;
     }
 
     IEnumerator TypeSentence (string sentence){
@@ -47,6 +50,12 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
+    }
+
+    public void DisplayLastSentence(){
+        animator.SetBool("isOpen", true);
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(lastSentence));
     }
 
     public void EndDialogue(){

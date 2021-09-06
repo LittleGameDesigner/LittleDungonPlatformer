@@ -64,6 +64,7 @@ public class SkeletonMage : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Electric");
             Instantiate(SpellObject, enemy.transform.position, transform.rotation);
         }
+        animator.SetTrigger("StopAttack");
     }
 
     private void ChangeDirection(){
@@ -91,6 +92,7 @@ public class SkeletonMage : MonoBehaviour
     }
 
     private void TakeDemage(float demage){
+        if(dead)return;
         Health -= demage;
         healthBar.Active(true);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();

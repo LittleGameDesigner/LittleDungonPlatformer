@@ -95,7 +95,7 @@ public class Spider : MonoBehaviour
     private void Chase(){
         if(timeSinceLastAttack + 1 > Time.time){return;}
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        if((XRange(Player) < 10) && (YRange(Player) < 3)){
+        if((XRange(Player) < 10) && (YRange(Player) < 5)){
             animator.SetBool("isRunning", true);
             MoveSpeed = 12;
             Vector3 facingDirection = transform.localScale;
@@ -127,6 +127,7 @@ public class Spider : MonoBehaviour
     }
 
     private void TakeDemage(float demage){
+        if(dead)return;
         Health -= demage;
         healthBar.Active(true);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();

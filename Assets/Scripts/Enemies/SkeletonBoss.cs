@@ -28,8 +28,9 @@ public class SkeletonBoss : MonoBehaviour
     private bool PlayTheme = true;
     public float exp;
     //Health
+    private bool dead;
     public float Health;
-    public float maxHealth = 280;
+    public float maxHealth = 240;
     private float stunCount = 0;
     private bool Stuned;
     private Color originalColor;
@@ -47,6 +48,7 @@ public class SkeletonBoss : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if(dead)return;
         if(stunCount > 0){
             stunCount -= Time.fixedDeltaTime;
             return;
@@ -74,7 +76,6 @@ public class SkeletonBoss : MonoBehaviour
                     animator.SetTrigger("Attack2");
                     Invoke("Attack", 0.3f);
                 }else if(criticalHit == 1 || criticalHit == 2){
-                    print("charge");
                     animator.SetTrigger("Charge");
                     isCharging = true;
                     AttackDemage = 12;
@@ -125,6 +126,7 @@ public class SkeletonBoss : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("SkeletonBoss");
             Instantiate(HitEffect, enemy.transform.position, transform.rotation);
         }
+        if(!isCharging)animator.SetTrigger("StopAttack");
     }
 
     private void Charge(){
@@ -135,6 +137,7 @@ public class SkeletonBoss : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("SkeletonBoss");
         }
         isCharging = false;
+        animator.SetTrigger("StopAttack");
     }
 
     private void Chase(){
@@ -172,6 +175,7 @@ public class SkeletonBoss : MonoBehaviour
     }
 
     private void TakeDemage(float demage){
+        if(dead)return;
         Health -= demage;
         healthBar.Active(true);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
@@ -188,6 +192,7 @@ public class SkeletonBoss : MonoBehaviour
         animator.speed = 0;
         FindObjectOfType<AudioManager>().Play("Hurt");
         if(Health <= 0){
+            dead = true;
             animator.speed = 1;
             animator.SetTrigger("Die");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 100, EnemyLayer);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
@@ -22,6 +23,7 @@ public class PlayerSword : MonoBehaviour
     private bool isAttacking;
     //Material
     [SerializeField] private LayerMask TerrianLayer;
+    private Rigidbody2D rb;
     private Animator animator;
     public GameObject PlayerBow;
     private Color originalColor;
@@ -30,13 +32,27 @@ public class PlayerSword : MonoBehaviour
     public float Health;
     public float maxHealth = 100;
     public HealthBarBehaviour healthBar;
+    public GameObject Blood;
     private bool dead;
     //EXP
     public int level = 1;
     public float exp = 0;
     public float expGap = 100;
+    public float totalEXP;
     public GameObject LevelUp;
     public GameObject LevelUpIcon;
+    //Magic
+    public float magic;
+    public float maxMagic = 50;
+    public bool GotFireBall;
+    public GameObject FireBall;
+    public Vector3 magicEulerAngles;
+    //PlayerStat
+    public Text lvStat;
+    public Text maxHealthStat;
+    public Text maxMagicStat;
+    public Text attackStat;
+    public Text totalEXPStat;
 
 
     void Start()
@@ -44,7 +60,10 @@ public class PlayerSword : MonoBehaviour
         AttackDemage = 10;
         animator = GetComponent<Animator>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
         healthBar.SetMaxHealth(Health, maxHealth);
+        healthBar.SetMaxMagic(magic, maxMagic);
+        healthBar.SetEXP(exp, expGap, level);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         originalColor = PlayerRenderrer.material.color;
     }
@@ -58,12 +77,14 @@ public class PlayerSword : MonoBehaviour
         JumpCD += Time.deltaTime;
 
         Sprint();
-        if(AttackCD > 0.8f){
-            if(Input.GetKeyDown(KeyCode.J) && !isSprinting){
+        if((AttackCD > 0.8f) && !isSprinting){
+            if(Input.GetKeyDown(KeyCode.J)){
                 isAttacking = true;
                 animator.SetTrigger("AttackMelee1");
                 AttackCD = 0;
                 Invoke("AttackMelee1", 0.3f);
+            }else{
+                CastMagic();
             }
         }
         AttackCD += Time.deltaTime; 
@@ -105,6 +126,7 @@ public class PlayerSword : MonoBehaviour
     private void Jump(){
         if(Input.GetKeyDown(KeyCode.Space) && IsGrounded()){
             animator.SetTrigger("Jump");
+            FindObjectOfType<AudioManager>().Play("Jump");
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 33), ForceMode2D.Impulse);
             JumpCD = 0;
         }
@@ -119,10 +141,12 @@ public class PlayerSword : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift)){
             MoveSpeed = 6;
             animator.SetBool("isSprinting", true);
+            FindObjectOfType<AudioManager>().Play("Walk");
             isSprinting = true;
         }else if(Input.GetKeyUp(KeyCode.LeftShift)){
             MoveSpeed = 3;
             animator.SetBool("isSprinting", false);
+            FindObjectOfType<AudioManager>().Stop("Walk");
             isSprinting = false;
         }
 
@@ -134,6 +158,30 @@ public class PlayerSword : MonoBehaviour
             enemy.SendMessage("TakeDemage", AttackDemage, SendMessageOptions.DontRequireReceiver);
             FindObjectOfType<AudioManager>().Play("SwordSwing");
         }
+        isAttacking = false;
+    }
+
+    private void CastMagic(){
+        Vector3 facingDirection = transform.localScale;
+        if(facingDirection.x > 0){
+            magicEulerAngles = new Vector3(0, 0, 0);
+        }else if(facingDirection.x < 0){
+            magicEulerAngles = new Vector3(0, 0, -180);
+        }
+        if(Input.GetKeyDown(KeyCode.Y) && (magic >= 30) && GotFireBall){
+            isAttacking = true;
+            Invoke("CastFireBall", 0.4f);
+            animator.SetTrigger("CastMagic");
+            magic -= 30;
+            healthBar.SetMagic(magic);
+            AttackCD = 0;
+        }
+    }
+
+    private void CastFireBall(){
+        FindObjectOfType<AudioManager>().Play("CastFireBall");
+        Instantiate(FireBall, transform.position, Quaternion.Euler(transform.eulerAngles + magicEulerAngles));
+        animator.SetTrigger("StopCasting");
         isAttacking = false;
     }
 
@@ -149,10 +197,13 @@ public class PlayerSword : MonoBehaviour
             PlayerBow.SetActive(true);
             PlayerBow pb = PlayerBow.GetComponent<PlayerBow>();
             pb.Health = Health;
+            pb.magic = magic;
             pb.level = level;
+            pb.totalEXP = totalEXP;
             pb.exp = exp;
             pb.expGap = expGap;
             pb.maxHealth = maxHealth;
+            pb.maxMagic = maxMagic;
             gameObject.SetActive(false);
         }
     }
@@ -165,6 +216,13 @@ public class PlayerSword : MonoBehaviour
         PlayerBow.SetActive(true);
         PlayerBow pb = PlayerBow.GetComponent<PlayerBow>();
         pb.Health = Health;
+        pb.magic = magic;
+        pb.level = level;
+        pb.totalEXP = totalEXP;
+        pb.exp = exp;
+        pb.expGap = expGap;
+        pb.maxHealth = maxHealth;
+        pb.maxMagic = maxMagic;
         pb.canSwitchToSword = true;
         canSwitchToBow = true;
         gameObject.SetActive(false);
@@ -175,13 +233,19 @@ public class PlayerSword : MonoBehaviour
         Health -= demage;
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         PlayerRenderrer.material.SetColor("_Color", Color.red);
+        Instantiate(Blood, transform.position + new Vector3(0, 0.2f, 0), transform.rotation);
         Invoke("DemageEffect", 0.2f);
         healthBar.SetHealth(Health);
         if(Health <= 0){
             dead = true;
             animator.SetTrigger("Die");
-            //Invoke("Respawn", 1);
+            Invoke("Respawn", 1);
         }
+    }
+
+    private void PushBack(int d){
+        animator.SetTrigger("PushBack");
+        rb.velocity = new Vector2(d, rb.velocity.y);
     }
 
     private void DemageEffect(){
@@ -191,6 +255,7 @@ public class PlayerSword : MonoBehaviour
 
     private void GainEXP(int amount){
         exp += amount;
+        totalEXP += amount;
         while(exp >= expGap){
             FindObjectOfType<AudioManager>().Play("LevelUp");
             Instantiate(LevelUp, transform.position, transform.rotation);
@@ -201,9 +266,22 @@ public class PlayerSword : MonoBehaviour
             expGap *= 1.2f;
             AttackDemage *= 1.1f;
             maxHealth += 30;
+            maxMagic += 10;
             Health = maxHealth;
+            magic = maxMagic;
             healthBar.SetMaxHealth(Health, maxHealth);
+            healthBar.SetMaxMagic(magic, maxMagic);
         }
+        healthBar.SetEXP(exp, expGap, level);
+        UpdatePlayerStat();
+    }
+
+    private void UpdatePlayerStat(){
+        lvStat.text = level.ToString();
+        maxHealthStat.text = maxHealth.ToString();
+        maxMagicStat.text = maxMagic.ToString();
+        attackStat.text = AttackDemage.ToString();
+        totalEXPStat.text = totalEXP.ToString();
     }
 
     private void DrinkRedPotion(){

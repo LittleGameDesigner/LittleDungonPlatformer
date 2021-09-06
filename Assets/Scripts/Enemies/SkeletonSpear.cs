@@ -153,6 +153,7 @@ public class SkeletonSpear : MonoBehaviour
     }
 
     private void TakeDemage(float demage){
+        if(dead)return;
         Health -= demage;
         healthBar.Active(true);
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();

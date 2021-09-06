@@ -286,6 +286,9 @@
     <Reference Include="unityplastic">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
     </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/SourcePackages/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
@@ -711,6 +714,18 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{3f358f72-c46c-0883-581e-2f3696e3a0f1}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProject.csproj">
+      <Project>{d12e3e49-d29f-47c1-4932-63c460214900}</Project>
+      <Name>AstarPathfindingProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{f2b0a0e5-2556-4510-5c9f-25c0760d25b1}</Project>
+      <Name>PackageToolsEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{4d4ea527-936c-417a-af3b-991b2ab2588d}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
