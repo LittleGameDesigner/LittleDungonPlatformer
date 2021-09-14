@@ -49,27 +49,34 @@
      <Compile Include="Assets\Scripts\Enemies\SkeletonSpear.cs" />
      <Compile Include="Assets\Scripts\Other\Key.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
+     <Compile Include="Assets\Scripts\Other\BossDoor.cs" />
      <Compile Include="Assets\Scripts\Enemies\Spider.cs" />
      <Compile Include="Assets\Scripts\Enemies\SkeletonArcher.cs" />
      <Compile Include="Assets\Scripts\Magic\FireBallSpell.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBow.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerSword.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\Other\DualTeleGate.cs" />
      <Compile Include="Assets\Scripts\Manager\DialogueTrigger.cs" />
      <Compile Include="Assets\Scripts\Other\Traps.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
      <Compile Include="Assets\Scripts\Other\FirstSword.cs" />
+     <Compile Include="Assets\Scripts\Manager\StaticPlayerData.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
      <Compile Include="Assets\Scripts\Other\HealthBarBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Magic\ChargingFire.cs" />
+     <Compile Include="Assets\SourcePackages\HardLight2D\Demo\DemoScripts\Speen.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Manager\DialogueManager.cs" />
+     <Compile Include="Assets\SourcePackages\HardLight2D\Demo\DemoScripts\PolyWobbler.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_Translate.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerArrow.cs" />
      <Compile Include="Assets\Scripts\Manager\Menu.cs" />
      <Compile Include="Assets\Scripts\Enemies\SkeletonBoss.cs" />
      <Compile Include="Assets\Scripts\Boss\DJBoss.cs" />
      <Compile Include="Assets\Scripts\Enemies\Bat.cs" />
+     <Compile Include="Assets\Scripts\Manager\SaveData.cs" />
      <Compile Include="Assets\Scripts\Manager\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Other\Chests.cs" />
      <Compile Include="Assets\Scripts\Other\TeleportGate.cs" />
@@ -79,15 +86,19 @@
      <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
      <Compile Include="Assets\Scripts\Manager\Dialogue.cs" />
+     <Compile Include="Assets\SourcePackages\HardLight2D\Demo\DemoScripts\MeshCopy.cs" />
      <Compile Include="Assets\Scripts\Other\Door.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyArrow.cs" />
      <Compile Include="Assets\Scripts\Magic\BerserkerRageSpell.cs" />
      <Compile Include="Assets\Scripts\Magic\ElectricBall.cs" />
      <Compile Include="Assets\Scripts\Manager\Sound.cs" />
-     <Compile Include="Assets\Scripts\Magic\ChargingFire.cs" />
-     <Compile Include="Assets\Scripts\Other\BossDoor.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Slime.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonSummoner.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonShield.cs" />
+     <Compile Include="Assets\Scripts\Magic\CrescentMoon.cs" />
      <None Include="Assets\SourcePackages\2D_Background_SunshineForest\2D_Horizontal_battle_Enviroment_05\Get full backgrounds pack.txt" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMPro.cginc" />
+     <None Include="Assets\SourcePackages\HardLight2D\ReadMe - FAQ.txt" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -110,6 +121,7 @@
      <None Include="Assets\SourcePackages\Fonts\Documentation\JazzCreateBubble_VersionHistory_1.1.txt" />
      <None Include="Assets\SourcePackages\Elemental Potions\Help.txt" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\SourcePackages\HardLight2D\Material\AdditiveShader.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -345,6 +357,9 @@
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/SourcePackages/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="HardLight2D">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/SourcePackages/HardLight2D/Scripts/HardLight2D.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>

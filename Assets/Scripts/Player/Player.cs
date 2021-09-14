@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private Color originalColor;
     private BoxCollider2D boxCollider2D;
     private Rigidbody2D rb;
+    private GameObject PlayerData;
     //Health
     public float Health;
     private float maxHealth = 1;
@@ -31,6 +32,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        LoadPlayerData();
+        if(PlayerData.GetComponent<StaticPlayerData>().whichPlayer == "PlayerSword"){
+            PlayerSword.SetActive(true);
+            gameObject.SetActive(false);
+        }else if(PlayerData.GetComponent<StaticPlayerData>().whichPlayer == "PlayerBow"){
+            PlayerBow.SetActive(true);
+            gameObject.SetActive(false);
+        }
         animator = GetComponent<Animator>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -49,6 +58,7 @@ public class Player : MonoBehaviour
         }
         JumpCD += Time.deltaTime;
         Sprint();
+        UpdatePlayerData();
     }
 
     private void FixedUpdate() {
@@ -109,7 +119,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void ChangeSword(){
+    public void ChangeSword(){
         PlayerSword.SetActive(true);
         PlayerSword ps = PlayerSword.GetComponent<PlayerSword>();
         ps.Health = ps.maxHealth;
@@ -119,7 +129,7 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void ChangeBow(){
+    public void ChangeBow(){
         PlayerBow.SetActive(true);
         PlayerBow pb = PlayerBow.GetComponent<PlayerBow>();
         pb.Health = pb.maxHealth;
@@ -160,6 +170,22 @@ public class Player : MonoBehaviour
 
     private void Respawn(){
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+    }
+
+    private void LoadPlayerData(){
+        PlayerData = GameObject.Find("StaticPlayerData");
+        // float x = PlayerData.GetComponent<StaticPlayerData>().positionX;
+        // print(x);
+        // float y = PlayerData.GetComponent<StaticPlayerData>().positionY;
+        // float z = PlayerData.GetComponent<StaticPlayerData>().positionZ;
+        // transform.position = new Vector3(x, y, z);
+    }
+
+    private void UpdatePlayerData(){
+        PlayerData.GetComponent<StaticPlayerData>().whichPlayer = "Player";
+        // PlayerData.GetComponent<StaticPlayerData>().positionX = transform.position.x;
+        // PlayerData.GetComponent<StaticPlayerData>().positionY = transform.position.y;
+        // PlayerData.GetComponent<StaticPlayerData>().positionZ = transform.position.z;
     }
     
 }

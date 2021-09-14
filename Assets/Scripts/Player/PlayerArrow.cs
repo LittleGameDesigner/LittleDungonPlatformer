@@ -18,11 +18,14 @@ public class PlayerArrow : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
+        if(collision.name.Contains("SkeletonShield")){
+            FindObjectOfType<AudioManager>().Play("Block");
+            Destroy(gameObject);
+        }
         if(collision.tag == "Enemy"){
             collision.SendMessage("TakeDemage", demage);
             FindObjectOfType<AudioManager>().Play("ArrowHitMetal");
             Destroy(gameObject);
-        }
-        
+        }  
     }
 }

@@ -28,6 +28,7 @@ public class PlayerSword : MonoBehaviour
     public GameObject PlayerBow;
     private Color originalColor;
     private BoxCollider2D boxCollider2D;
+    private GameObject PlayerData;
     //Health
     public float Health;
     public float maxHealth = 100;
@@ -57,6 +58,14 @@ public class PlayerSword : MonoBehaviour
 
     void Start()
     {
+        GotFireBall = true;
+        maxHealth = 10000;
+        Health = maxHealth;
+        maxMagic = 10000;
+        magic = maxMagic;
+        print(transform.position);
+        PlayerData = GameObject.Find("StaticPlayerData");
+        //LoadPlayerData();
         AttackDemage = 10;
         animator = GetComponent<Animator>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
@@ -89,7 +98,9 @@ public class PlayerSword : MonoBehaviour
         }
         AttackCD += Time.deltaTime; 
         SwitchToBow();
-        AttackDemage = baseAttackDemage * Convert.ToSingle(System.Math.Pow(1.1f, level - 1));        
+        AttackDemage = baseAttackDemage * Convert.ToSingle(System.Math.Pow(1.1f, level - 1));
+        UpdatePlayerData();
+        UpdatePlayerStat();
     }
 
     private void FixedUpdate() {
@@ -127,7 +138,7 @@ public class PlayerSword : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && IsGrounded()){
             animator.SetTrigger("Jump");
             FindObjectOfType<AudioManager>().Play("Jump");
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 33), ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 53), ForceMode2D.Impulse);
             JumpCD = 0;
         }
     }
@@ -273,7 +284,6 @@ public class PlayerSword : MonoBehaviour
             healthBar.SetMaxMagic(magic, maxMagic);
         }
         healthBar.SetEXP(exp, expGap, level);
-        UpdatePlayerStat();
     }
 
     private void UpdatePlayerStat(){
@@ -296,5 +306,40 @@ public class PlayerSword : MonoBehaviour
 
     private void Respawn(){
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+    }
+
+    private void LoadPlayerData(){
+        maxMagic = PlayerData.GetComponent<StaticPlayerData>().maxMagic;
+        magic = PlayerData.GetComponent<StaticPlayerData>().magic;
+        maxHealth = PlayerData.GetComponent<StaticPlayerData>().maxHealth;
+        Health = PlayerData.GetComponent<StaticPlayerData>().health;
+        level = PlayerData.GetComponent<StaticPlayerData>().level;
+        AttackDemage = PlayerData.GetComponent<StaticPlayerData>().AttackDemage;
+        exp = PlayerData.GetComponent<StaticPlayerData>().exp;
+        expGap = PlayerData.GetComponent<StaticPlayerData>().expGap;
+        totalEXP = PlayerData.GetComponent<StaticPlayerData>().totalEXP;
+        GotFireBall = PlayerData.GetComponent<StaticPlayerData>().GotFireBall;
+        canSwitchToBow = PlayerData.GetComponent<StaticPlayerData>().canSwitchToBow;
+        // float x = PlayerData.GetComponent<StaticPlayerData>().positionX;
+        // float y = PlayerData.GetComponent<StaticPlayerData>().positionY;
+        // float z = PlayerData.GetComponent<StaticPlayerData>().positionZ;
+        // transform.position = new Vector3(x, y, z);
+        //print(transform.position);
+    }
+
+    private void UpdatePlayerData(){
+        PlayerData.GetComponent<StaticPlayerData>().maxMagic = maxMagic;
+        PlayerData.GetComponent<StaticPlayerData>().magic = magic;
+        PlayerData.GetComponent<StaticPlayerData>().maxHealth = maxHealth;
+        PlayerData.GetComponent<StaticPlayerData>().health = Health;
+        PlayerData.GetComponent<StaticPlayerData>().level = level;
+        PlayerData.GetComponent<StaticPlayerData>().AttackDemage = AttackDemage;
+        PlayerData.GetComponent<StaticPlayerData>().exp = exp;
+        PlayerData.GetComponent<StaticPlayerData>().expGap = expGap;
+        PlayerData.GetComponent<StaticPlayerData>().totalEXP = totalEXP;
+        PlayerData.GetComponent<StaticPlayerData>().whichPlayer = "PlayerSword";
+        // PlayerData.GetComponent<StaticPlayerData>().positionX = transform.position.x;
+        // PlayerData.GetComponent<StaticPlayerData>().positionY = transform.position.y;
+        // PlayerData.GetComponent<StaticPlayerData>().positionZ = transform.position.z;
     }
 }

@@ -37,4 +37,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void ChangeWeapon(string weapon){
+        if(weapon == "PlayerSword"){
+            PlayerSword.SetActive(true);
+            Player.SetActive(false);
+            PlayerBow.SetActive(false);
+        }
+    }
 }

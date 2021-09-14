@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
+     <Compile Include="Assets\SourcePackages\HardLight2D\Editor\HardLight2DEditor.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Unity/2020.3.15f2/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -274,6 +275,9 @@
     <Reference Include="System.IO.Compression.FileSystem">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.connect.share@4.1.1/Plugins/System.IO.Compression.FileSystem.dll</HintPath>
     </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/SourcePackages/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="log4netPlastic">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
     </Reference>
@@ -286,8 +290,8 @@
     <Reference Include="unityplastic">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
     </Reference>
-    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/SourcePackages/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    <Reference Include="HardLight2D">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Assets/HardLight2D/Scripts/HardLight2D.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
@@ -646,23 +650,11 @@
     <Reference Include="UnityEditor.TestRunner">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.InteractiveTutorialsFramework">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/UnityEditor.InteractiveTutorialsFramework.dll</HintPath>
@@ -672,9 +664,6 @@
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -688,23 +677,38 @@
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Play.Publisher.Editor">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Play.Publisher.Editor.dll</HintPath>
+    <Reference Include="Unity.PlasticSCM.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Play.Publisher.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Play.Publisher.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InteractiveTutorials.Core">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InteractiveTutorials.Core.Scripts">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.Scripts.dll</HintPath>
@@ -715,13 +719,13 @@
       <Project>{3f358f72-c46c-0883-581e-2f3696e3a0f1}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="AstarPathfindingProject.csproj">
-      <Project>{d12e3e49-d29f-47c1-4932-63c460214900}</Project>
-      <Name>AstarPathfindingProject</Name>
-    </ProjectReference>
     <ProjectReference Include="PackageToolsEditor.csproj">
       <Project>{f2b0a0e5-2556-4510-5c9f-25c0760d25b1}</Project>
       <Name>PackageToolsEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProject.csproj">
+      <Project>{d12e3e49-d29f-47c1-4932-63c460214900}</Project>
+      <Name>AstarPathfindingProject</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
       <Project>{4d4ea527-936c-417a-af3b-991b2ab2588d}</Project>

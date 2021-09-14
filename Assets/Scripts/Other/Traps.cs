@@ -18,7 +18,7 @@ public class Traps : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player" || collision.tag == "Enemy"){
-            collision.SendMessage("TakeDemage", 40);
+            collision.SendMessage("TakeDemage", 1);
         }
     }
 }
