@@ -5,33 +5,38 @@ using UnityEngine.SceneManagement;
 
 public static class SaveManager
 {
-    public static void Save(StaticPlayerData Player){
+    public static void Save(PlayerController Player, string scene=null){
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/LittleDungeon.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        Debug.Log(SceneManager.GetActiveScene().name);
+        PlayerData data = new PlayerData(Player, scene);
 
-        SaveData saveData = new SaveData(Player);
-        Debug.Log(saveData.health);
-
-        formatter.Serialize(stream, saveData);
+        formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static SaveData Load(){
+    public static PlayerData Load(PlayerController Player){
         string path = Application.persistentDataPath + "/LittleDungeon.save";
         if(File.Exists(path)){
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             
-            SaveData data = formatter.Deserialize(stream) as SaveData;
+            PlayerData data = formatter.Deserialize(stream) as PlayerData;
             stream.Close();
 
             return data;
         }else{
-            Debug.Log("Save File Not Found in " + path);
-            return null;
+            PlayerData data = new PlayerData(Player);
+            data.Reset();
+            return data;
+        }
+    }
+
+    public static void DeleteSaveFile(){
+        string path = Application.persistentDataPath + "/LittleDungeon.save";
+        if(File.Exists(path)){
+            File.Delete(path);
         }
     }
 }

@@ -22,6 +22,7 @@ public class Menu : MonoBehaviour
     }
 
     public void NewGame(){
+        SaveManager.DeleteSaveFile();
         SceneManager.LoadScene("Chapter1");
     }
 
@@ -34,34 +35,31 @@ public class Menu : MonoBehaviour
     }
 
     public void SaveGame(){
-        PlayerData = GameObject.Find("StaticPlayerData");
-        SaveManager.Save(PlayerData.GetComponent<StaticPlayerData>());
+        SaveManager.Save(GameObject.Find("PlayerController").GetComponent<PlayerController>());
     }
 
     public void LoadGame(){
-        PlayerData = GameObject.Find("StaticPlayerData");
-        SaveData data = SaveManager.Load();
-        ReadLoadData(data);
+        var playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
+        PlayerData data = SaveManager.Load(playerController);
         SceneManager.LoadScene(data.sceneName);
-        DontDestroyOnLoad(PlayerData);
     }
 
-    public void ReadLoadData(SaveData data){
-        PlayerData = GameObject.Find("StaticPlayerData");
-        PlayerData.GetComponent<StaticPlayerData>().maxMagic = data.maxMagic;
-        PlayerData.GetComponent<StaticPlayerData>().magic = data.magic;
-        PlayerData.GetComponent<StaticPlayerData>().maxHealth = data.maxHealth;
-        PlayerData.GetComponent<StaticPlayerData>().health = data.health;
-        PlayerData.GetComponent<StaticPlayerData>().level = data.level;
-        PlayerData.GetComponent<StaticPlayerData>().AttackDemage = data.AttackDemage;
-        PlayerData.GetComponent<StaticPlayerData>().exp = data.exp;
-        PlayerData.GetComponent<StaticPlayerData>().expGap = data.expGap;
-        PlayerData.GetComponent<StaticPlayerData>().totalEXP = data.totalEXP;
-        PlayerData.GetComponent<StaticPlayerData>().GotFireBall = data.GotFireBall;
-        PlayerData.GetComponent<StaticPlayerData>().GotBerserkerRage = data.GotBerserkerRage;
-        PlayerData.GetComponent<StaticPlayerData>().canSwitchToSword = data.canSwitchToSword;
-        PlayerData.GetComponent<StaticPlayerData>().canSwitchToBow = data.canSwitchToBow;
-    }
+    // public void ReadLoadData(PlayerData data){
+    //     var playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
+    //     playerController.maxMagic = data.maxMagic;
+    //     playerController.magic = data.magic;
+    //     playerController.maxHealth = data.maxHealth;
+    //     playerController.health = data.health;
+    //     playerController.level = data.level;
+    //     playerController.AttackDemage = data.AttackDemage;
+    //     playerController.exp = data.exp;
+    //     playerController.expGap = data.expGap;
+    //     playerController.totalEXP = data.totalEXP;
+    //     playerController.GotFireBall = data.GotFireBall;
+    //     playerController.GotBerserkerRage = data.GotBerserkerRage;
+    //     playerController.canSwitchToBow = data.canSwitchToBow;
+    //     playerController.canSwitchToSword = data.canSwitchToSword;
+    // }
 
     public void SetMenuThemeVolume(float volume){
         audioMixer.SetFloat("volume", volume);

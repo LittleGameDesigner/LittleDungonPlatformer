@@ -40,26 +40,33 @@
      <Compile Include="Assets\Scripts\Magic\FireBall.cs" />
      <Compile Include="Assets\Scripts\Other\NPCs.cs" />
      <Compile Include="Assets\SourcePackages\Fonts\Script\scriptTexttest.cs" />
+     <Compile Include="Assets\Scripts\Magic\WaterSplash.cs" />
+     <Compile Include="Assets\SourcePackages\NGarden\nGardenMonsterPack03\UnityAnimation\script\AniPlay.cs" />
      <Compile Include="Assets\Scripts\Other\Potion.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
      <Compile Include="Assets\Scripts\Enemies\SkeletonMage.cs" />
      <Compile Include="Assets\Scripts\Manager\CameraPlayer.cs" />
      <Compile Include="Assets\Scripts\Other\FirstBow.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Slime.cs" />
      <Compile Include="Assets\Scripts\Enemies\SkeletonSpear.cs" />
      <Compile Include="Assets\Scripts\Other\Key.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
      <Compile Include="Assets\Scripts\Other\BossDoor.cs" />
+     <Compile Include="Assets\Scripts\Magic\Tornado.cs" />
+     <Compile Include="Assets\Scripts\Manager\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Enemies\Spider.cs" />
      <Compile Include="Assets\Scripts\Enemies\SkeletonArcher.cs" />
      <Compile Include="Assets\Scripts\Magic\FireBallSpell.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBow.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerSword.cs" />
+     <Compile Include="Assets\Scripts\Magic\WaterSplashSpell.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Other\DualTeleGate.cs" />
      <Compile Include="Assets\Scripts\Manager\DialogueTrigger.cs" />
      <Compile Include="Assets\Scripts\Other\Traps.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonShield.cs" />
      <Compile Include="Assets\Scripts\Other\FirstSword.cs" />
      <Compile Include="Assets\Scripts\Manager\StaticPlayerData.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
@@ -69,11 +76,14 @@
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Manager\DialogueManager.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Boss\MoonBoss.cs" />
      <Compile Include="Assets\SourcePackages\HardLight2D\Demo\DemoScripts\PolyWobbler.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_Translate.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerArrow.cs" />
      <Compile Include="Assets\Scripts\Manager\Menu.cs" />
      <Compile Include="Assets\Scripts\Enemies\SkeletonBoss.cs" />
+     <Compile Include="Assets\Scripts\Magic\CrescentMoon.cs" />
      <Compile Include="Assets\Scripts\Boss\DJBoss.cs" />
      <Compile Include="Assets\Scripts\Enemies\Bat.cs" />
      <Compile Include="Assets\Scripts\Manager\SaveData.cs" />
@@ -81,6 +91,7 @@
      <Compile Include="Assets\Scripts\Other\Chests.cs" />
      <Compile Include="Assets\Scripts\Other\TeleportGate.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_New.cs" />
+     <Compile Include="Assets\Scripts\Magic\TornadoSpell.cs" />
      <Compile Include="Assets\Scripts\Manager\SaveManager.cs" />
      <Compile Include="Assets\Scripts\Other\DieFinishEvent.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
@@ -88,19 +99,21 @@
      <Compile Include="Assets\Scripts\Manager\Dialogue.cs" />
      <Compile Include="Assets\SourcePackages\HardLight2D\Demo\DemoScripts\MeshCopy.cs" />
      <Compile Include="Assets\Scripts\Other\Door.cs" />
+     <Compile Include="Assets\Scripts\Enemies\SkeletonSummoner.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyArrow.cs" />
      <Compile Include="Assets\Scripts\Magic\BerserkerRageSpell.cs" />
      <Compile Include="Assets\Scripts\Magic\ElectricBall.cs" />
      <Compile Include="Assets\Scripts\Manager\Sound.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Slime.cs" />
-     <Compile Include="Assets\Scripts\Enemies\SkeletonSummoner.cs" />
-     <Compile Include="Assets\Scripts\Enemies\SkeletonShield.cs" />
-     <Compile Include="Assets\Scripts\Magic\CrescentMoon.cs" />
+     <Compile Include="Assets\SourcePackages\LightningBolt\LightningBoltScript.cs" />
+     <Compile Include="Assets\Scripts\Magic\LightningSpear.cs" />
+     <Compile Include="Assets\Scripts\Magic\RedLotus.cs" />
+     <Compile Include="Assets\Scripts\Magic\B52_Moon.cs" />
      <None Include="Assets\SourcePackages\2D_Background_SunshineForest\2D_Horizontal_battle_Enviroment_05\Get full backgrounds pack.txt" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\SourcePackages\HardLight2D\ReadMe - FAQ.txt" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
+     <None Include="Assets\SourcePackages\LightningBolt\Readme.txt" />
      <None Include="Assets\SourcePackages\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\SourcePackages\Bringer Of Death\License.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Free.txt" />
@@ -709,6 +722,12 @@
     <Reference Include="System.Xml.Serialization">
         <HintPath>C:/Unity/2020.3.15f2/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.001">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -717,6 +736,9 @@
     </Reference>
     <Reference Include="UnityEditor.InteractiveTutorialsFramework">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/UnityEditor.InteractiveTutorialsFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="PsdPlugin">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -729,6 +751,18 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
@@ -754,6 +788,12 @@
     <Reference Include="Unity.EditorCoroutines.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Mathematics">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Runtime">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
     </Reference>
@@ -766,8 +806,23 @@
     <Reference Include="Unity.Postprocessing.Runtime">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Animation.Triangle.Runtime">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Runtime">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Runtime">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Editor">
+        <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InteractiveTutorials.Core.Scripts">
         <HintPath>C:/Users/Owner/Desktop/Unity/Dungon_Platformer/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.Scripts.dll</HintPath>

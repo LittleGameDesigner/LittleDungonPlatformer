@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Traps : MonoBehaviour
 {
+    private float demageCD = .2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +17,13 @@ public class Traps : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerStay2D(Collider2D collision) {
         if(collision.tag == "Player" || collision.tag == "Enemy"){
-            collision.SendMessage("TakeDemage", 1);
+            if(demageCD > .2f){
+                collision.SendMessage("TakeDemage", 10);
+                demageCD = 0;
+            }
+            demageCD += Time.deltaTime;
         }
     }
 }

@@ -28,7 +28,7 @@ public class ChargingFire : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(demageDelay > 0)return;
         if(collision.tag == "Player"){
-            collision.SendMessage("TakeDemage", 5);
+            collision.SendMessage("TakeDemage", 50);
             if(player.position.x > transform.position.x){
                 collision.SendMessage("PushBack", 40);
             }else{

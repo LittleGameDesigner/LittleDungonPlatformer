@@ -23,6 +23,7 @@ public class SkeletonShield : MonoBehaviour
     private bool isPushing;
     private Vector3 eulerAngles;
     //Material
+    private Rigidbody2D rb;
     public GameObject CrescentMoon;
     private GameObject Player;
     private Animator animator;
@@ -42,6 +43,7 @@ public class SkeletonShield : MonoBehaviour
         Health = maxHealth;
         healthBar.SetMaxHealth(Health, maxHealth);
         healthBar.Active(false);
+        rb = GetComponent<Rigidbody2D>();
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         originalColor = PlayerRenderrer.material.color;
     }
@@ -165,6 +167,15 @@ public class SkeletonShield : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hurt");
             Invoke("PlayAnimation", 0.2f);        
         }
+    }
+
+    private void PushBack(int d){
+        animator.SetTrigger("PushBack");
+        rb.velocity = new Vector2(d, rb.velocity.y);
+    }
+
+    private void PushUp(int d){
+        rb.AddForce(new Vector2(0, d), ForceMode2D.Impulse);
     }
 
     private void DemageEffect(){

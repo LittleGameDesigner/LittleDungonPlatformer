@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class FireBallSpell : MonoBehaviour
 {
-    public GameObject PlayerSword;
     public GameObject FireBallLock;
     private GameObject PlayerData;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerData = GameObject.Find("StaticPlayerData");
+
     }
 
     // Update is called once per frame
@@ -21,11 +20,10 @@ public class FireBallSpell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player"){
-            PlayerSword ps = PlayerSword.GetComponent<PlayerSword>();
-            ps.GotFireBall = true;
-            PlayerData.GetComponent<StaticPlayerData>().GotFireBall = true;
+            var playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
+            playerController.GotFireBall = true;
             FireBallLock.SetActive(false);
-            FindObjectOfType<AudioManager>().Play("CastFireBall");
+            FindObjectOfType<AudioManager>().Play("Ding");
             Destroy(gameObject);
         }
     }

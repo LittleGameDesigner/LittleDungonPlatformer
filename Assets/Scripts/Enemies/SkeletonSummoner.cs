@@ -22,6 +22,7 @@ public class SkeletonSummoner : MonoBehaviour
     public GameObject SkeletonSpear;
     public GameObject Slime;
     //Material
+    private Rigidbody2D rb;
     private GameObject Player;
     public GameObject SummonEffect;
     private Animator animator;
@@ -39,6 +40,7 @@ public class SkeletonSummoner : MonoBehaviour
         Health = maxHealth;
         healthBar.SetMaxHealth(Health, maxHealth);
         healthBar.Active(false);
+        rb = GetComponent<Rigidbody2D>();
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         originalColor = PlayerRenderrer.material.color;
     }
@@ -134,6 +136,15 @@ public class SkeletonSummoner : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hurt");
             Invoke("PlayAnimation", 0.2f);        
         }
+    }
+
+    private void PushBack(int d){
+        animator.SetTrigger("PushBack");
+        rb.velocity = new Vector2(d, rb.velocity.y);
+    }
+
+    private void PushUp(int d){
+        rb.AddForce(new Vector2(0, d), ForceMode2D.Impulse);
     }
 
     private void DemageEffect(){

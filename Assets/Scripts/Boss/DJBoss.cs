@@ -345,6 +345,15 @@ public class DJBoss : MonoBehaviour
         }
     }
 
+    private void PushBack(int d){
+        animator.SetTrigger("PushBack");
+        rb.velocity = new Vector2(d, rb.velocity.y);
+    }
+
+    private void PushUp(int d){
+        rb.AddForce(new Vector2(0, d), ForceMode2D.Impulse);
+    }
+
     private void DemageEffect(){
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         PlayerRenderrer.material.SetColor("_Color", originalColor);

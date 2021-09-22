@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TeleportGate : MonoBehaviour
 {
     private GameObject PlayerData;
+    public GameObject LoadingPage;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +21,11 @@ public class TeleportGate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player"){
+            LoadingPage.SetActive(true);
             SceneManager.LoadScene("Chapter2");
-            GameObject.Find("PlayerSword").GetComponent<PlayerSword>().transform.position = new Vector3(-30, 0, 0);
-            DontDestroyOnLoad(PlayerData);
+            var playerController = GameObject.Find("PlayerController").GetComponent<PlayerController>();
+            playerController.transform.position = new Vector3(-2.6f, -0.8f, 0);
+            SaveManager.Save(playerController, "Chapter2");
         }
     }
 }

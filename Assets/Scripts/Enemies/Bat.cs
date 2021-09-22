@@ -52,7 +52,7 @@ public class Bat : MonoBehaviour
     void Update()
     {
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
-        if((XRange(Player) < 6) && (YRange(Player) < 6)){
+        if((XRange(Player) < 6) && (YRange(Player) < 10)){
             waked = true;
         }
 
@@ -124,6 +124,11 @@ public class Bat : MonoBehaviour
             enemy.SendMessage("GainEXP", 1, SendMessageOptions.DontRequireReceiver);
         }
         FindObjectOfType<AudioManager>().Play("SkeletonDie");
+    }
+
+    private void PushBack(int d){
+        animator.SetTrigger("PushBack");
+        rb.velocity = new Vector2(d, rb.velocity.y);
     }
 
     private void DemageEffect(){

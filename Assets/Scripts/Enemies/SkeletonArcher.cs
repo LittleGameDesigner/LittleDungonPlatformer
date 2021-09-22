@@ -11,6 +11,7 @@ public class SkeletonArcher : MonoBehaviour
     public float MoveSpeed = 2;
     public bool isDetected;
     //Material
+    private Rigidbody2D rb;
     private Animator animator;
     public LayerMask EnemyLayer;
     private GameObject Player;
@@ -33,6 +34,7 @@ public class SkeletonArcher : MonoBehaviour
         Health = maxHealth;
         healthBar.SetMaxHealth(Health, maxHealth);
         healthBar.Active(false);
+        rb = GetComponent<Rigidbody2D>();
         var PlayerRenderrer = gameObject.GetComponent<Renderer>();
         originalColor = PlayerRenderrer.material.color;
     }
@@ -114,6 +116,15 @@ public class SkeletonArcher : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Hurt");
             Invoke("PlayAnimation", 0.2f);
         }
+    }
+
+    private void PushBack(int d){
+        animator.SetTrigger("PushBack");
+        rb.velocity = new Vector2(d, rb.velocity.y);
+    }
+
+    private void PushUp(int d){
+        rb.AddForce(new Vector2(0, d), ForceMode2D.Impulse);
     }
 
     private void DemageEffect(){
